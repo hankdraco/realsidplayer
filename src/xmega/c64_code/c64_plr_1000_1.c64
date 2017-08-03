@@ -1,0 +1,35 @@
+
+
+		* = $3c00
+
+start
+		lda #1				; keep here 2 bytes
+		bne start_zak		; and here 2 bytes, because of 'ldi YL, 0x04' in epu.asm in the EPU_FREE_CYCLE phase
+
+		lda #$00		; this is routine that handles pressing the 'reset' button
+		sta $d418		;
+		lda #$00
+		ldx #$00
+		ldy #$00
+		jsr $1000
+
+		lda #0
+		beq start		;
+
+start_zak
+		lda #$00
+		ldx #$00
+		ldy #$00
+		jsr $1000
+
+loop
+		lda $00
+		bne loop
+		
+
+		jsr $1003
+
+
+		lda #$22
+		cmp #$01
+		bne loop

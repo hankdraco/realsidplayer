@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRAssembler</ToolchainName>
+    <ProjectGuid>59B1D629-9DCC-43ed-A0FD-8AB0E4D622AB</ProjectGuid>
+    <avrdeviceseries>none</avrdeviceseries>
+    <avrdevice>ATxmega128A3U</avrdevice>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.obj</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <Language>ASSEMBLY</Language>
+    <AssemblyName>xmega</AssemblyName>
+    <Name>xmega</Name>
+    <RootNamespace>xmega</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <EntryFile>$(MSBuildProjectDirectory)\main.asm</EntryFile>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.32.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
+    <avrtoolserialnumber>000200212345</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x1E9742</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions>
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
+    <avrtoolinterface>PDI</avrtoolinterface>
+    <com_atmel_avrdbg_tool_ispmk2>
+      <ToolOptions>
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>PDI</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.ispmk2</ToolType>
+      <ToolNumber>000200212345</ToolNumber>
+      <ToolName>AVRISP mkII</ToolName>
+    </com_atmel_avrdbg_tool_ispmk2>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrAssembler>
+        <avrasm.assembler.general.AdditionalIncludeDirectories>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAA_DFP\1.0.39\avrasm\inc</Value>
+          </ListValues>
+        </avrasm.assembler.general.AdditionalIncludeDirectories>
+        <avrasm.assembler.general.IncludeFile>ATxmega128a3udef.inc</avrasm.assembler.general.IncludeFile>
+      </AvrAssembler>
+    </ToolchainSettings>
+    <PreBuildEvent>"$(SolutionDir)xmega\TMPx.exe" -i "$(SolutionDir)xmega\c64_code\c64_tests.c64" -o "$(SolutionDir)xmega\c64_code\c64_tests.bin"
+"$(SolutionDir)xmega\bin2asm.exe" "$(SolutionDir)xmega\c64_code\c64_tests.bin"
+"$(SolutionDir)xmega\TMPx.exe" -i "$(SolutionDir)xmega\c64_code\c64_plr_1000_1.c64" -o "$(SolutionDir)xmega\c64_code\c64_plr_1000_1.bin"
+"$(SolutionDir)xmega\bin2asm.exe" "$(SolutionDir)xmega\c64_code\c64_plr_1000_1.bin"
+"$(SolutionDir)xmega\TMPx.exe" -i "$(SolutionDir)xmega\c64_code\c64_plr_1000_2.c64" -o "$(SolutionDir)xmega\c64_code\c64_plr_1000_2.bin"
+"$(SolutionDir)xmega\bin2asm.exe" "$(SolutionDir)xmega\c64_code\c64_plr_1000_2.bin"
+"$(SolutionDir)xmega\TMPx.exe" -i "$(SolutionDir)xmega\c64_code\c64_plr_1000_4.c64" -o "$(SolutionDir)xmega\c64_code\c64_plr_1000_4.bin"
+"$(SolutionDir)xmega\bin2asm.exe" "$(SolutionDir)xmega\c64_code\c64_plr_1000_4.bin"
+"$(SolutionDir)xmega\TMPx.exe" -i "$(SolutionDir)xmega\c64_code\c64_plr_1000_grgincyberspace.c64" -o "$(SolutionDir)xmega\c64_code\c64_plr_1000_grgincyberspace.bin"
+"$(SolutionDir)xmega\bin2asm.exe" "$(SolutionDir)xmega\c64_code\c64_plr_1000_grgincyberspace.bin"</PreBuildEvent>
+    <OutputType>Executable</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrAssembler>
+        <avrasm.assembler.general.AdditionalIncludeDirectories>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAA_DFP\1.0.39\avrasm\inc</Value>
+          </ListValues>
+        </avrasm.assembler.general.AdditionalIncludeDirectories>
+        <avrasm.assembler.general.IncludeFile>ATxmega128a3udef.inc</avrasm.assembler.general.IncludeFile>
+      </AvrAssembler>
+    </ToolchainSettings>
+    <OutputType>Executable</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="c64_resources.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="epu.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="epu_core.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\amj_blasphemy.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\blues_muz_nothing_else_matters.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\daf_opium1.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\daf_opium2.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\dane_orbital.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\dane_unisexual.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\drax_boneless.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\grg_grg_in_cyberspace.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_activezone.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_blueflower.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_crystaldream.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_hotstyle.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_my8580.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_nomore.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_shorttrack.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\hank_ziolo.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\jeff_experiment.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\kb_2nd_reality_part_4.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\mhd_destruction.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\mitch_and_dane_dazzler.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\orcan_schizofrenia.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\orcan_tchernobyls_tears.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\pri_show_must_go_on.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\red_devil_for_avantgarde.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\shogoon_altered_states.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\shogoon_inflexion.prg.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\shogoon_muminki.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\vincenzo_compozak.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zaks\wayne_power_of_magic.sid.inc">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BIN2ASM.exe">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="c64_code\c64_plr_1000_4.c64">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="c64_code\c64_plr_1000_grgincyberspace.c64">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="c64_code\c64_plr_1000_1.c64">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="c64_code\c64_plr_1000_2.c64">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="c64_code\c64_tests.c64">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="TMPx.exe">
+      <SubType>Code</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="c64_code" />
+    <Folder Include="zaks" />
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Assembler.targets" />
+</Project>

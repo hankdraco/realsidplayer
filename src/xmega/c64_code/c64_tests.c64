@@ -1,0 +1,879 @@
+
+
+		* = $2810	; DON'T CHANGE THE START ADDRESS
+		
+		sei
+test	
+		;-----------------------------------	PHA & PLA
+
+		ldx #$26
+		txa
+		pha
+		ldy #$07
+		tya
+		pha
+		lda #$22
+		pha
+
+		cmp #$22
+		beq * + 5
+		jmp *
+
+		lda #$01
+		pla
+
+		cmp #$22
+		beq * + 5
+		jmp *
+
+		pla
+		tay
+		cpy #$07
+		beq * + 5
+		jmp *
+
+		pla
+		cpx #$26
+		beq * + 5
+		jmp *
+
+		;-----------------------------------	LDA
+
+		lda #$00
+		beq * + 5
+		jmp *
+
+		bpl * + 5
+		jmp *
+
+		lda #$22
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		lda #$80
+		bmi *+5
+		jmp *
+
+		;-----------------------------------	LDA $aa
+
+		ldx #$22
+		stx $fa
+
+		lda $fa
+		cmp #$22
+		beq * + 5
+		jmp *
+
+		;-----------------------------------	LDA $aa,x
+
+		ldx #$22
+		stx $fb
+
+		ldx #$fb
+		lda $00,x
+		cmp #$22
+		beq * + 5
+		jmp *
+
+		;-----------------------------------	LDA ($aa),y
+
+		lda #$22
+		sta $1022
+
+		lda #$00
+		sta $02
+		lda #$10
+		sta $03
+
+		ldy #$22
+		lda ($02),y
+
+		cmp #$22
+		beq * + 5
+		jmp *
+
+		;-----------------------------------	LDX
+
+		ldx #$00
+		beq * + 5
+		jmp *
+
+		bpl * + 5
+		jmp *
+
+		ldx #$22
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		ldx #$80
+		bmi *+5
+		jmp *
+
+		;-----------------------------------	LDY
+
+		ldy #$00
+		beq * + 5
+		jmp *
+
+		bpl * + 5
+		jmp *
+
+		ldy #$22
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		ldy #$80
+		bmi *+5
+		jmp *
+
+		;-----------------------------------	LDA $xxxx
+
+		lda #$00
+		sta $2801
+		lda $2801
+		beq * + 5
+		jmp *
+
+		bpl * + 5
+		jmp *
+
+		lda #$22
+		sta $2801
+		lda $2801
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		lda #$80
+		sta $2801
+		lda $2801
+		bmi *+5
+		jmp *
+
+		;-----------------------------------	CMP
+
+		lda #$22
+		cmp #$01	;n=0, z=0, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+		
+		cmp #$22	;n=0, z=1, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		beq *+5
+		jmp *
+		
+		cmp #$44	;n=1, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		;-----------------------------------	LSR
+
+		lda #%00010000
+		lsr				;n=0, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00001000
+		beq *+5
+		jmp *
+
+
+		lda #%00010001
+		lsr				;n=0, z=0, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00001000
+		beq *+5
+		jmp *
+
+
+		lda #%00000001
+		lsr				;n=0, z=1, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		cmp #%00000000
+		beq *+5
+		jmp *
+
+		;-----------------------------------	ASL
+
+		lda #%00010000
+		asl				;n=0, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%000100000
+		beq *+5
+		jmp *
+
+
+		lda #%10010000
+		asl				;n=0, z=0, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00100000
+		beq *+5
+		jmp *
+
+
+		lda #%01000000
+		asl				;n=1, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%10000000
+		beq *+5
+		jmp *
+
+
+		lda #%10000000
+		asl				;n=0, z=1, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		cmp #%00000000
+		beq *+5
+		jmp *
+
+		;-----------------------------------	DEX
+
+		ldy #$00
+		ldx #$22
+		iny
+		dex
+		bne *-2
+
+		cpy #$22
+		beq *+5
+		jmp *
+
+		ldy #$00
+		ldx #$22
+		iny
+		dex
+		bpl *-2
+
+		cpy #$23
+		beq *+5
+		jmp *
+
+		;-----------------------------------	DEC $aaaa
+
+		lda #$02
+		sta $2801
+
+		dec $2801	;n=0, z=0
+
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		dec $2801	;n=0, z=1
+
+		beq *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		dec $2801	;n=1, z=0
+
+		bne *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		;-----------------------------------	INC $aaaa
+
+		lda #$fe
+		sta $2801
+
+		inc $2801	;n=1, z=0
+
+		bne *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		inc $2801	;n=0, z=1
+
+		beq *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		inc $2801	;n=0, z=0
+
+		bne *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		;-----------------------------------	ROL
+
+		lda #%00010000
+		clc
+		rol				;n=0, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00100000
+		beq *+5
+		jmp *
+
+
+		lda #%10010000
+		clc
+		rol				;n=0, z=0, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00100000
+		beq *+5
+		jmp *
+
+
+		lda #%01000000
+		clc
+		rol				;n=1, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%10000000
+		beq *+5
+		jmp *
+
+
+		lda #%10000000
+		clc
+		rol				;n=0, z=1, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		cmp #%00000000
+		beq *+5
+		jmp *
+
+
+		lda #%00000000
+		sec
+		rol				;n=0, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00000001
+		beq *+5
+		jmp *
+
+		;-----------------------------------	ROR
+
+		lda #%00010000
+		clc
+		ror				;n=0, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00001000
+		beq *+5
+		jmp *
+
+
+		lda #%00010001
+		clc
+		ror				;n=0, z=0, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%00001000
+		beq *+5
+		jmp *
+
+
+		lda #%00000001
+		clc
+		ror				;n=0, z=1, c=1
+
+		bcs *+5
+		jmp *
+
+		bpl *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		cmp #%00000000
+		beq *+5
+		jmp *
+
+
+		lda #%00000000
+		sec
+		ror				;n=1, z=0, c=0
+
+		bcc *+5
+		jmp *
+
+		bmi *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		cmp #%10000000
+		beq *+5
+		jmp *
+
+		;-----------------------------------	ADC
+
+		lda #$00
+		sec
+		adc #$00	;n=0, v=0, z=0, c=0
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$01
+		beq *+5
+		jmp *
+
+
+		lda #$00
+		clc
+		adc #$00	;n=0, v=0, z=1, c=0
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$00
+		beq *+5
+		jmp *
+
+
+		lda #$44
+		clc
+		adc #$44	;n=1, v=1, z=0, c=0
+
+		bmi *+5
+		jmp *
+
+		bvs *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$88
+		beq *+5
+		jmp *
+
+
+		lda #$f0
+		clc
+		adc #$01	;n=1, v=0, z=0, c=0
+
+		bmi *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$f1
+		beq *+5
+		jmp *
+
+
+		lda #$f0
+		clc
+		adc #$20	;n=0, v=0, z=0, c=1
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		cmp #$10
+		beq *+5
+		jmp *
+
+
+		lda #$f0
+		clc
+		adc #$f0	;n=1, v=0, z=0, c=1
+
+		bmi *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		cmp #$e0
+		beq *+5
+		jmp *
+
+
+		lda #$f0
+		clc
+		adc #$10	;n=0, v=0, z=1, c=1
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		cmp #$00
+		beq *+5
+		jmp *
+
+		;-----------------------------------	SBC
+
+		lda #$00
+		clc
+		sbc #$00	;n=1, v=0, z=0, c=0
+
+		bmi *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$ff
+		beq *+5
+		jmp *
+
+
+		lda #$00
+		sec
+		sbc #$00	;n=0, v=0, z=1, c=1
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		cmp #$00
+		beq *+5
+		jmp *
+
+
+		lda #$44
+		sec
+		sbc #$22	;n=0, v=0, z=0, c=1
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		cmp #$22
+		beq *+5
+		jmp *
+
+
+		lda #$80
+		sec
+		sbc #$a0	;n=1, v=0, z=0, c=0
+
+		bmi *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$e0
+		beq *+5
+		jmp *
+
+
+		lda #$20
+		sec
+		sbc #$f0	;n=0, v=0, z=0, c=0
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		cmp #$30
+		beq *+5
+		jmp *
+
+		;-----------------------------------	(BRANCHES)
+
+		lda #$ff	;all flags enabled
+		pha
+		plp
+
+		bmi *+5
+		jmp *
+
+		bvs *+5
+		jmp *
+
+		bcs *+5
+		jmp *
+
+		beq *+5
+		jmp *
+
+		
+		lda #$04	;only SEI
+		pha
+		plp
+
+		bpl *+5
+		jmp *
+
+		bvc *+5
+		jmp *
+
+		bcc *+5
+		jmp *
+
+		bne *+5
+		jmp *
+
+		;-----------------------------------	TXS/TSX
+
+		tsx
+		txa
+
+		ldx #$22
+		txs
+		ldx #$01
+		tsx
+
+		cpx #$22
+		beq *+5
+		jmp *
+
+		tax
+		txs
+
+
+
+
+
+;--------------------------------------------------------------------------------- END OF TESTS
+		lda #$22
+		sta $2800	; if all passed you'll get the value of #$22 at $2800 in the simulator
+		jmp *
+		nop

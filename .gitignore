@@ -1,0 +1,3 @@
+src/.vs
+src/xmega/c64_code/*.bin
+src/xmega/Debug

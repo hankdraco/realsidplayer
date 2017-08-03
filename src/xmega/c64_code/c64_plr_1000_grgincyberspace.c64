@@ -1,0 +1,65 @@
+
+
+		* = $3c00
+
+start
+		lda #1				; keep here 2 bytes
+		bne start_zak		; and here 2 bytes, because of 'ldi YL, 0x04' in epu.asm in the EPU_FREE_CYCLE phase
+
+		lda #$00		; this is routine that handles pressing the 'reset' button
+		sta $d418		;
+		lda #$00
+		ldx #$00
+		ldy #$00
+		jsr $1000
+
+		lda #0
+		beq start		;
+
+start_zak
+		lda #$00
+		ldx #$00
+		ldy #$00
+		jsr $1000
+
+loop
+		lda $00
+		bne loop
+
+
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*1	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*2	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*3	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*4	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*5	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*6	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		jsr $1009		; GRG IN CYBERSPACE
+		lda #(156/8)*7	; GRG IN CYBERSPACE
+		cmp $00			; GRG IN CYBERSPACE
+		bne *-2			; GRG IN CYBERSPACE
+		nop				; GRG IN CYBERSPACE -> added just to avoid the 'misalignment - padding zero byte' warning
+
+		jsr $1003
+
+
+		lda #$22
+		cmp #$01
+		bne loop
